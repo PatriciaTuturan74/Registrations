@@ -7,37 +7,56 @@
 
 body{
     font-family: Arial;
-    background: #f0f2f5;
+    background: linear-gradient(to right, #1e3c72, #2a5298);
+    margin: 0;
+    padding: 0;
 }
 
 .container{
-    width: 350px;
-    margin: 50px auto;
+    width: 400px;
+    margin: 40px auto;
     background: white;
-    padding: 25px;
-    border-radius: 10px;
+    padding: 30px;
+    border-radius: 15px;
     text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+h2{
+    color: navy;
+    margin-bottom: 20px;
 }
 
 input{
     width: 90%;
-    padding: 10px;
+    padding: 12px;
     margin: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
 }
 
 button{
-    padding: 10px 20px;
+    padding: 12px 25px;
     background: navy;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+button:hover{
+    background: #003366;
 }
 
 img{
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
+    border: 4px solid navy;
+    margin-bottom: 15px;
 }
 
 #loginPage,
@@ -45,10 +64,33 @@ img{
     display: none;
 }
 
+/* DASHBOARD DESIGN */
+
+.dashboard-card{
+    background: #f4f7fb;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: left;
+    margin-top: 15px;
+}
+
+.dashboard-card p{
+    font-size: 16px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.dashboard-card span{
+    font-weight: bold;
+    color: navy;
+}
+
 </style>
 </head>
 
 <body>
+
+<!-- REGISTER PAGE -->
 
 <div class="container" id="registerPage">
 
@@ -58,7 +100,13 @@ img{
 
     <input type="text" id="course" placeholder="Course">
 
-    <input type="text" id="age" placeholder="Age">
+    <input type="number" id="age" placeholder="Age">
+
+    <input type="date" id="birthdate">
+
+    <input type="text" id="province" placeholder="Province">
+
+    <input type="text" id="municipality" placeholder="Municipality">
 
     <input type="text" id="username" placeholder="Username">
 
@@ -73,6 +121,8 @@ img{
 
 </div>
 
+<!-- LOGIN PAGE -->
+
 <div class="container" id="loginPage">
 
     <h2>Login Form</h2>
@@ -85,6 +135,8 @@ img{
 
 </div>
 
+<!-- DASHBOARD -->
+
 <div class="container" id="dashboard">
 
     <h2>Student Dashboard</h2>
@@ -93,9 +145,19 @@ img{
 
     <h3 id="displayName"></h3>
 
-    <p id="displayCourse"></p>
+    <div class="dashboard-card">
 
-    <p id="displayAge"></p>
+        <p><span>Course:</span> <span id="displayCourse"></span></p>
+
+        <p><span>Age:</span> <span id="displayAge"></span></p>
+
+        <p><span>Birthdate:</span> <span id="displayBirthdate"></span></p>
+
+        <p><span>Province:</span> <span id="displayProvince"></span></p>
+
+        <p><span>Municipality:</span> <span id="displayMunicipality"></span></p>
+
+    </div>
 
     <button onclick="logout()">Logout</button>
 
@@ -119,6 +181,12 @@ let course = document.getElementById("course").value;
 
 let age = document.getElementById("age").value;
 
+let birthdate = document.getElementById("birthdate").value;
+
+let province = document.getElementById("province").value;
+
+let municipality = document.getElementById("municipality").value;
+
 let username = document.getElementById("username").value;
 
 let password = document.getElementById("password").value;
@@ -128,6 +196,12 @@ localStorage.setItem("name", name);
 localStorage.setItem("course", course);
 
 localStorage.setItem("age", age);
+
+localStorage.setItem("birthdate", birthdate);
+
+localStorage.setItem("province", province);
+
+localStorage.setItem("municipality", municipality);
 
 localStorage.setItem("username", username);
 
@@ -159,10 +233,19 @@ document.getElementById("displayName").innerHTML =
 localStorage.getItem("name");
 
 document.getElementById("displayCourse").innerHTML =
-"Course: " + localStorage.getItem("course");
+localStorage.getItem("course");
 
 document.getElementById("displayAge").innerHTML =
-"Age: " + localStorage.getItem("age");
+localStorage.getItem("age");
+
+document.getElementById("displayBirthdate").innerHTML =
+localStorage.getItem("birthdate");
+
+document.getElementById("displayProvince").innerHTML =
+localStorage.getItem("province");
+
+document.getElementById("displayMunicipality").innerHTML =
+localStorage.getItem("municipality");
 
 }
 
@@ -186,4 +269,3 @@ document.getElementById("loginPage").style.display = "block";
 
 </body>
 </html>
-
